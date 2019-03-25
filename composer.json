@@ -1,5 +1,5 @@
 {
-    "name": "ecodev/graphql-upload",
+    "name": "danfah/graphql-upload",
     "description": "A middleware to support file uploads in GraphQL",
     "type": "library",
     "keywords": ["api", "graphql", "upload", "multipart", "middleware"],
