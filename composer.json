@@ -24,10 +24,10 @@
         }
     },
     "require": {
-        "php": "^7.1",
+        "php": "^7.0.27",
         "ext-json": "*",
         "psr/http-server-middleware": "^1.0",
-        "webonyx/graphql-php": "^0.13.0"
+        "webonyx/graphql-php": "^0.12.6"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "@stable",

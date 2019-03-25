@@ -85,7 +85,7 @@ class UploadMiddleware implements MiddlewareInterface
      *
      * @param ServerRequestInterface $request
      */
-    private function validateParsedBody(ServerRequestInterface $request): void
+    private function validateParsedBody(ServerRequestInterface $request)
     {
         $bodyParams = $request->getParsedBody();
 

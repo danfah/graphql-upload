@@ -13,7 +13,7 @@ use PHPUnit\Framework\TestCase;
 
 class UploadTypeTest extends TestCase
 {
-    public function testCanParseUploadedFileInstance(): void
+    public function testCanParseUploadedFileInstance()
     {
         $type = new UploadType();
         $file = new PsrUploadedFileStub('image.jpg', 'image/jpeg');
@@ -21,7 +21,7 @@ class UploadTypeTest extends TestCase
         self::assertSame($file, $actual);
     }
 
-    public function testCannotParseNonUploadedFileInstance(): void
+    public function testCannotParseNonUploadedFileInstance()
     {
         $type = new UploadType();
         $this->expectException(\UnexpectedValueException::class);
@@ -30,7 +30,7 @@ class UploadTypeTest extends TestCase
         $type->parseValue('foo');
     }
 
-    public function testCanNeverBeSerialized(): void
+    public function testCanNeverBeSerialized()
     {
         $type = new UploadType();
         $this->expectException(InvariantViolation::class);
@@ -39,7 +39,7 @@ class UploadTypeTest extends TestCase
         $type->serialize('foo');
     }
 
-    public function testCanNeverParseLiteral(): void
+    public function testCanNeverParseLiteral()
     {
         $type = new UploadType();
         $node = new StringValueNode(['value' => 'foo']);

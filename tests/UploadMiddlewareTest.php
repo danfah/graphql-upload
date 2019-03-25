@@ -29,12 +29,12 @@ class UploadMiddlewareTest extends TestCase
      */
     private $middleware;
 
-    public function setUp(): void
+    public function setUp()
     {
         $this->middleware = new UploadMiddleware();
     }
 
-    public function testProcess(): void
+    public function testProcess()
     {
         $response = new Response();
         $handler = new class($response) implements RequestHandlerInterface {
@@ -63,7 +63,7 @@ class UploadMiddlewareTest extends TestCase
         self::assertSame($response, $actualResponse, 'should return the mocked response');
     }
 
-    public function testParsesMultipartRequest(): void
+    public function testParsesMultipartRequest()
     {
         $query = '{my query}';
         $variables = [
@@ -98,7 +98,7 @@ class UploadMiddlewareTest extends TestCase
         self::assertSame($variables, $processedRequest->getParsedBody()['variables'], 'uploaded files should have been injected into variables');
     }
 
-    public function testEmptyRequestIsValid(): void
+    public function testEmptyRequestIsValid()
     {
         $request = $this->createRequest('{my query}', [], [], [], 'op');
         $processedRequest = $this->middleware->processRequest($request);
@@ -107,7 +107,7 @@ class UploadMiddlewareTest extends TestCase
         self::assertSame([], $processedRequest->getParsedBody()['variables'], 'variables should still be empty');
     }
 
-    public function testNonMultipartRequestAreNotTouched(): void
+    public function testNonMultipartRequestAreNotTouched()
     {
         $request = new ServerRequest();
         $processedRequest = $this->middleware->processRequest($request);
@@ -115,7 +115,7 @@ class UploadMiddlewareTest extends TestCase
         self::assertSame($request, $processedRequest, 'request should have been transformed as application/json');
     }
 
-    public function testEmptyRequestShouldThrows(): void
+    public function testEmptyRequestShouldThrows()
     {
         $request = new ServerRequest();
         $request = $request
@@ -127,7 +127,7 @@ class UploadMiddlewareTest extends TestCase
         $this->middleware->processRequest($request);
     }
 
-    public function testNullRequestShouldThrows(): void
+    public function testNullRequestShouldThrows()
     {
         $request = new ServerRequest();
         $request = $request
@@ -139,7 +139,7 @@ class UploadMiddlewareTest extends TestCase
         $this->middleware->processRequest($request);
     }
 
-    public function testInvalidRequestShouldThrows(): void
+    public function testInvalidRequestShouldThrows()
     {
         $request = new ServerRequest();
         $request = $request
@@ -151,7 +151,7 @@ class UploadMiddlewareTest extends TestCase
         $this->middleware->processRequest($request);
     }
 
-    public function testOtherContentTypeShouldNotBeTouched(): void
+    public function testOtherContentTypeShouldNotBeTouched()
     {
         $request = new ServerRequest();
         $request = $request
@@ -162,7 +162,7 @@ class UploadMiddlewareTest extends TestCase
         self::assertSame($request, $processedRequest);
     }
 
-    public function testRequestWithoutMapShouldThrows(): void
+    public function testRequestWithoutMapShouldThrows()
     {
         $request = $this->createRequest('{my query}', [], [], [], 'op');
 
@@ -176,7 +176,7 @@ class UploadMiddlewareTest extends TestCase
         $this->middleware->processRequest($request);
     }
 
-    public function testCanUploadFileWithStandardServer(): void
+    public function testCanUploadFileWithStandardServer()
     {
         $query = 'mutation TestUpload($text: String, $file: Upload) {
     testUpload(text: $text, file: $file)
